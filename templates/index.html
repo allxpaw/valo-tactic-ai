@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valo Tactic AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>VALO <span>TACTIC</span> AI</h1>
+      <p>Помощник по тактике Valorant. Отвечает по базе знаний (RAG) через GigaChat и показывает источники.</p>
+    </header>
+
+    <form id="ask-form">
+      <label for="question">Ваш вопрос</label>
+      <textarea id="question" maxlength="500" rows="3"
+        placeholder="Например: Когда команде стоит делать эко-раунд?"></textarea>
+      <div class="row">
+        <label for="top-k">Фрагментов (top_k):</label>
+        <input id="top-k" type="number" min="1" max="10" value="{{ default_top_k }}">
+        <button id="send" type="submit">Спросить</button>
+      </div>
+    </form>
+
+    <div id="status" role="status"></div>
+    <section id="answer-box" hidden>
+      <h2>Ответ</h2>
+      <div id="answer"></div>
+    </section>
+    <section id="sources-box" hidden>
+      <h2>Источники</h2>
+      <div id="sources"></div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
